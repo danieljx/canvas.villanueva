@@ -12,7 +12,7 @@ var port = process.env.C9_PORT || 8080
 //20582 para nodester
 server.listen(port);*/
 
-var express = require('express')
+var express = require('express');
 var app = express.createServer();
 app.set('views',__dirname + '/views');
 app.configure(function(){
