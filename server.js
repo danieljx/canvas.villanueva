@@ -8,7 +8,8 @@ app.configure(function(){
 app.get('/',function(req,res){
 	res.render('index.jade',{layout:false});
 });
-var port = process.env.C9_PORT || 20582 //20582 para nodester
+var port = process.env.C9_PORT || 20582 
+//20582 para nodester
 server.listen(port);
 
 var io;
