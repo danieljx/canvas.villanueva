@@ -12,16 +12,19 @@ app.configure(function(){
 	app.set('views',__dirname + '/views');
     app.set('view engine', 'jade');
 	app.use(stylus.middleware(
-	  { src: __dirname + '/css'
+	  { src: __dirname + '/public'
 	  , compile: compile
 	  }
 	));
-	app.use(express.static(__dirname));
+	app.use(express.static(__dirname + '/public'));
 });
-app.get('/',function(req,res){
-	res.render('index',{layout:false});
-});
-var port = process.env.C9_PORT || 20582 
+app.get('/', function (req, res) {
+  res.render('index',
+  { title : 'Mi Primera Aplicacion de Node Js By Daniel Villanueva' }
+  )
+})
+
+var port = process.env.C9_PORT || 8080 
 //20582 para nodester
 server.listen(port);
 var io;
