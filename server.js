@@ -1,12 +1,25 @@
 var express = require('express'),http = require('http');
+var stylus  = require('stylus');
 var app = express();
+var nib = require('nib');
 var server = http.createServer(app);
-app.set('views',__dirname + '/views');
+function compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .use(nib());
+}
 app.configure(function(){
+	app.set('views',__dirname + '/views');
+    app.set('view engine', 'jade');
+	app.use(stylus.middleware(
+	  { src: __dirname + '/css'
+	  , compile: compile
+	  }
+	));
 	app.use(express.static(__dirname));
 });
 app.get('/',function(req,res){
-	res.render('index.jade',{layout:false});
+	res.render('index',{layout:false});
 });
 var port = process.env.C9_PORT || 20582 
 //20582 para nodester
